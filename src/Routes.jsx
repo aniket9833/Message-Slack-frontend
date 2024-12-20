@@ -7,6 +7,7 @@ import { Auth } from '@/pages/Auth/Auth';
 import { Notfound } from '@/pages/Notfound/Notfound';
 
 import { Home } from './pages/Home/Home';
+import { WorkspaceLayout } from './pages/Workspace/Layout';
 
 export const AppRoutes = () => {
   return (
@@ -34,6 +35,14 @@ export const AppRoutes = () => {
             <Auth>
               <Home />
             </Auth>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/workspaces/:workspaceId"
+        element={
+          <ProtectedRoute>
+            <WorkspaceLayout>Workspace</WorkspaceLayout>
           </ProtectedRoute>
         }
       />
