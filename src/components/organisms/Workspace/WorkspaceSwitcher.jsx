@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useGetWorkspaceById } from '@/hooks/apis/workspaces/useGetWorkspaceById';
@@ -12,6 +14,7 @@ export const WorkspaceSwitcher = () => {
   const navigate = useNavigate();
   const { workspaceId } = useParams();
   const { isFetching, workspace } = useGetWorkspaceById(workspaceId);
+  const { workspaces, isFetching: isFetchingWorkspace } = useGetWorkspaceById();
 
   return (
     <DropdownMenu>
@@ -24,6 +27,32 @@ export const WorkspaceSwitcher = () => {
           )}
         </Button>
       </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem className="cursor-pointer flex-col justify-start items-start">
+          {workspace?.name}
+          <span className="text-xs text-muted-foregorund">
+            (Active workspace)
+          </span>
+        </DropdownMenuItem>
+        {isFetchingWorkspace ? (
+          <Loader className="size-5 animate-spin" />
+        ) : (
+          workspaces?.map((workspace) => {
+            if (workspace._id === workspaceId) {
+              return null;
+            }
+            return (
+              <DropdownMenuItem
+                className="cursor-pointer flex-col justify-start items-start"
+                onClick={() => navigate(`/workspaces/${workspace._id}`)}
+                key={workspace._id}
+              >
+                <p className="truncate">{workspace?.name}</p>
+              </DropdownMenuItem>
+            );
+          })
+        )}
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };
