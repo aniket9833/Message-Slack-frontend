@@ -18,7 +18,7 @@ export const CreateChannelModal = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { openCreateChannelModal, setOpenCreateChannelModal } =
+  const { openCreteChannelModal, setOpenCreateChannelModal } =
     useCreateChannelModal();
 
   const [channelName, setChannelName] = useState();
@@ -47,7 +47,7 @@ export const CreateChannelModal = () => {
   }
 
   return (
-    <Dialog open={openCreateChannelModal} onOpenChange={handleClose}>
+    <Dialog open={openCreteChannelModal} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create new Channel</DialogTitle>
