@@ -99,9 +99,11 @@ export const Editor = ({ onsubmit }) => {
               size="iconSm"
               className="ml-auto bg-[#007a6a] hover:bg-[#007a6a]/80 text-white"
               onClick={() => {
-                onsubmit({
-                  body: JSON.stringify(quillRef.current?.getContents()),
-                });
+                const messageContent = JSON.stringify(
+                  quillRef.current?.getContents()
+                );
+                onsubmit({ body: messageContent });
+                quillRef.current?.setText('');
               }}
               disabled={false}
             >
