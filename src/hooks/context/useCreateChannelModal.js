@@ -3,5 +3,5 @@ import { useContext } from 'react';
 import CreateChannelContext from '@/context/CreateChannelContext';
 
 export const useCreateChannelModal = () => {
-  useContext(CreateChannelContext);
+  return useContext(CreateChannelContext);
 };

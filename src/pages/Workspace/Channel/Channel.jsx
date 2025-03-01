@@ -46,7 +46,7 @@ export const Channel = () => {
   useEffect(() => {
     if (isSuccess) {
       console.log('Channel Messages fetched');
-      setMessageList(messages);
+      setMessageList(messages.reverse());
     }
   }, [isSuccess, messages, setMessageList, channelId]);
 
@@ -82,6 +82,7 @@ export const Channel = () => {
               authorImage={message.senderId?.avatar}
               authorName={message.senderId?.username}
               createdAt={message.createdAt}
+              image={message.image}
             />
           );
         })}
