@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 
-import { getPreginedUrl, uploadImageToAWSpresignedUrl } from '@/apis/s3';
+import { getPresignedUrl, uploadImageToAWSpresignedUrl } from '@/apis/s3';
 import { Editor } from '@/components/atoms/Editor/Editor';
 import { useAuth } from '@/hooks/context/useAuth';
 import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace';
@@ -18,7 +18,7 @@ export const ChatInput = () => {
     if (image) {
       const preSignedUrl = await queryClient.fetchQuery({
         queryKey: ['getPresignedUrl'],
-        queryFn: () => getPreginedUrl({ token: auth?.token }),
+        queryFn: () => getPresignedUrl({ token: auth?.token }),
       });
 
       console.log('Presigned url', preSignedUrl);

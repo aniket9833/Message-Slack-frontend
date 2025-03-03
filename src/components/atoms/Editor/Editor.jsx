@@ -9,12 +9,17 @@ import { PiTextAa } from 'react-icons/pi';
 import { Button } from '@/components/ui/button';
 
 import { Hint } from '../Hint/Hint';
-
-export const Editor = ({ onsubmit }) => {
+export const Editor = ({
+  // variant = 'create',
+  onSubmit,
+  // onCancel,
+  // placeholder,
+  // defaultValue
+}) => {
   const [isToolbarVisible, setIsToolbarVisible] = useState(false);
+
   const [image, setImage] = useState(null);
   const containerRef = useRef(); // reqd to initialize the editor
-
   const defaultValueRef = useRef();
   const quillRef = useRef();
   const imageInputRef = useRef(null);
@@ -30,6 +35,7 @@ export const Editor = ({ onsubmit }) => {
   useEffect(() => {
     if (!containerRef.current) return; // if containerRef is not initialized, return
     const container = containerRef.current; // get the container element
+
     const editorContainer = container.appendChild(
       container.ownerDocument.createElement('div')
     ); // create a new div element and append it to the container
@@ -68,7 +74,7 @@ export const Editor = ({ onsubmit }) => {
   }, []);
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col border border-slate-300 rounded-md overflow-hidden focus-within:shadow-sm focus-within:border-slate-400 bg-white">
+      <div className="flex flex-col border border-slate-300 rounded-md overflow-hidden focus-within:shadow-sm focus-within:border-slate-400 bg-white ">
         <div className="h-full ql-custom" ref={containerRef} />
         {image && (
           <div className="p-2">
@@ -132,7 +138,7 @@ export const Editor = ({ onsubmit }) => {
                 const messageContent = JSON.stringify(
                   quillRef.current?.getContents()
                 );
-                onsubmit({ body: messageContent, image });
+                onSubmit({ body: messageContent, image });
                 quillRef.current?.setText('');
                 setImage(null);
                 imageInputRef.current.value = '';

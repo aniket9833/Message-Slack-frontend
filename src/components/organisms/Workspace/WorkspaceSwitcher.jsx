@@ -8,13 +8,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useFetchWorkspace } from '@/hooks/apis/workspaces/useFetchWorkspace';
 import { useGetWorkspaceById } from '@/hooks/apis/workspaces/useGetWorkspaceById';
 
 export const WorkspaceSwitcher = () => {
   const navigate = useNavigate();
   const { workspaceId } = useParams();
   const { isFetching, workspace } = useGetWorkspaceById(workspaceId);
-  const { workspaces, isFetching: isFetchingWorkspace } = useGetWorkspaceById();
+  const { workspaces, isFetching: isFetchingWorkspace } = useFetchWorkspace();
 
   return (
     <DropdownMenu>
@@ -31,7 +32,7 @@ export const WorkspaceSwitcher = () => {
         <DropdownMenuItem className="cursor-pointer flex-col justify-start items-start">
           {workspace?.name}
           <span className="text-xs text-muted-foregorund">
-            (Active workspace)
+            (Active Workspace)
           </span>
         </DropdownMenuItem>
         {isFetchingWorkspace ? (

@@ -41,16 +41,17 @@ export const fetchWorkspaceDetailsRequest = async ({ workspaceId, token }) => {
         'x-access-token': token,
       },
     });
+    console.log('Response in fetching workspace details request', response);
     return response?.data?.data;
   } catch (error) {
     console.log('Error in fetching workspace details request', error);
-    throw error.response.data;
+    throw error.response;
   }
 };
 
 export const deleteWorkspaceRequest = async ({ workspaceId, token }) => {
   try {
-    const response = await axios.delete(`workspaces/${workspaceId}`, {
+    const response = await axios.delete(`/workspaces/${workspaceId}`, {
       headers: {
         'x-access-token': token,
       },
@@ -65,7 +66,7 @@ export const deleteWorkspaceRequest = async ({ workspaceId, token }) => {
 export const updateWorkspaceRequest = async ({ workspaceId, name, token }) => {
   try {
     const response = await axios.put(
-      `workspaces/${workspaceId}`,
+      `/workspaces/${workspaceId}`,
       { name },
       {
         headers: {
@@ -95,7 +96,7 @@ export const addChannelToWorkspaceRequest = async ({
         },
       }
     );
-    return response;
+    return response?.data?.data;
   } catch (error) {
     console.log('Error in adding channel to workspace request', error);
     throw error.response.data;
@@ -137,6 +138,7 @@ export const addMemberToWorkspaceRequest = async ({ workspaceId, token }) => {
     throw error.response.data;
   }
 };
+
 export const joinWorkspaceRequest = async ({
   workspaceId,
   joinCode,
@@ -155,6 +157,6 @@ export const joinWorkspaceRequest = async ({
     return response?.data?.data;
   } catch (error) {
     console.log('Error in joining workspace request', error);
-    throw error.response;
+    throw error.response.data;
   }
 };

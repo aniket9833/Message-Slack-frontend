@@ -14,10 +14,9 @@ import { useSocket } from '@/hooks/context/useSocket';
 export const Channel = () => {
   const { channelId } = useParams();
 
-  const { channelDetails, isFetching, isError } = useGetChannelById(channelId);
-
   const queryClient = useQueryClient();
 
+  const { channelDetails, isFetching, isError } = useGetChannelById(channelId);
   const { setMessageList, messageList } = useChannelMessages();
 
   const { joinChannel } = useSocket();
@@ -70,6 +69,7 @@ export const Channel = () => {
     <div className="flex flex-col h-full">
       <ChannelHeader name={channelDetails?.name} />
 
+      {/* below div is scrollable for the messages */}
       <div
         ref={messageContainerListRef}
         className="flex-5 overflow-y-auto p-5 gap-y-2"

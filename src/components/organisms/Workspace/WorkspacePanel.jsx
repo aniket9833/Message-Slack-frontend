@@ -16,8 +16,8 @@ import { useCreateChannelModal } from '@/hooks/context/useCreateChannelModal';
 
 export const WorkspacePanel = () => {
   const { workspaceId } = useParams();
-  const { isFetching, isSuccess, workspace } = useGetWorkspaceById(workspaceId);
   const { setOpenCreateChannelModal } = useCreateChannelModal();
+  const { workspace, isFetching, isSuccess } = useGetWorkspaceById(workspaceId);
 
   if (isFetching) {
     return (
@@ -47,7 +47,6 @@ export const WorkspacePanel = () => {
           id="threads"
           variant="active"
         />
-
         <SideBarItem
           label="Drafts & Sends"
           icon={SendHorizonalIcon}

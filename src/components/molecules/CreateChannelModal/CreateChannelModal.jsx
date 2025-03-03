@@ -21,7 +21,7 @@ export const CreateChannelModal = () => {
   const { openCreateChannelModal, setOpenCreateChannelModal } =
     useCreateChannelModal();
 
-  const [channelName, setChannelName] = useState();
+  const [channelName, setChannelName] = useState('');
 
   const { addChannelToWorkspaceMutation } = useAddChannelToWorkspace();
   const { currentWorkspace } = useCurrentWorkspace();
@@ -50,7 +50,7 @@ export const CreateChannelModal = () => {
     <Dialog open={openCreateChannelModal} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create new Channel</DialogTitle>
+          <DialogTitle>Create a channel</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleFormSubmit}>
           <Input

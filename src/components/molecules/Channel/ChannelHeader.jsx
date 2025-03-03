@@ -34,7 +34,6 @@ export const ChannelHeader = ({ name }) => {
               </div>
               <p className="text-sm">{name}</p>
             </div>
-            {/* HW implement edit dialog for editting name of a channel */}
           </div>
         </DialogContent>
       </Dialog>

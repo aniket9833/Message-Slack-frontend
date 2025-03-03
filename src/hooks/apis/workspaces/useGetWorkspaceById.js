@@ -5,7 +5,6 @@ import { useAuth } from '@/hooks/context/useAuth';
 
 export const useGetWorkspaceById = (id) => {
   const { auth } = useAuth();
-
   const {
     isFetching,
     isSuccess,

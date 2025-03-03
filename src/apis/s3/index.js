@@ -1,5 +1,6 @@
-import axiosConfig from '@/config/axiosConfig';
 import axios from 'axios';
+
+import axiosConfig from '@/config/axiosConfig';
 
 export const uploadImageToAWSpresignedUrl = async ({ url, file }) => {
   try {
@@ -16,7 +17,7 @@ export const uploadImageToAWSpresignedUrl = async ({ url, file }) => {
   }
 };
 
-export const getPreginedUrl = async ({ token }) => {
+export const getPresignedUrl = async ({ token }) => {
   try {
     const response = await axiosConfig.get('/messages/pre-signed-url', {
       headers: {

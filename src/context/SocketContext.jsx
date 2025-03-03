@@ -7,7 +7,7 @@ const SocketContext = createContext();
 
 export const SocketContextProvider = ({ children }) => {
   const [currentChannel, setCurrentChannel] = useState(null);
-  const { messageList, setMessageList } = useChannelMessages;
+  const { messageList, setMessageList } = useChannelMessages();
 
   const socket = io(import.meta.env.VITE_BACKEND_SOCKET_URL);
 
@@ -16,14 +16,14 @@ export const SocketContextProvider = ({ children }) => {
     setMessageList([...messageList, data]);
   });
 
-  async function JoinChannel(channelId) {
+  async function joinChannel(channelId) {
     socket.emit('JoinChannel', { channelId }, (data) => {
       console.log('Successfully joined the channel', data);
       setCurrentChannel(data?.data);
     });
   }
   return (
-    <SocketContext.Provider value={{ socket, JoinChannel, currentChannel }}>
+    <SocketContext.Provider value={{ socket, joinChannel, currentChannel }}>
       {children}
     </SocketContext.Provider>
   );
