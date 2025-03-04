@@ -24,9 +24,7 @@ Developed an end-to-end Slack API integration for workspace creation.
    ```
 2. Install dependencies:
    ```sh
-   cd backend
-   npm install
-   cd ../frontend
+   cd frontend
    npm install
    ```
 3. Configure environment variables:
