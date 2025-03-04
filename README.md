@@ -24,18 +24,18 @@ Developed an end-to-end Slack API integration for workspace creation.
    ```
 2. Install dependencies:
    ```sh
-   cd frontend
+   cd Message-Slack-frontend
    npm install
    ```
 3. Configure environment variables:
    - Create a `.env` file in the backend directory and add necessary credentials (DB connection, API keys, etc.).
 4. Start the development server:
    ```sh
-   cd backend
+   cd Message-Slack-backend
    npm start
    ```
    ```sh
-   cd frontend
+   cd Message-Slack-frontend
    npm run dev
    ```
 
