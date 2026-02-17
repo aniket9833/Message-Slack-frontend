@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { ProtectedRoute } from '@/components/molecules/ProtectedRoute/ProtectedRoute';
 import { SigninContainer } from '@/components/organisms/Auth/SigninContainer';
@@ -14,6 +14,7 @@ import { WorkspaceLayout } from './pages/Workspace/Layout';
 export const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/auth/signin" replace />} />
       <Route
         path="/auth/signup"
         element={
