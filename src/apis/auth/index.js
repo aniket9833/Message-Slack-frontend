@@ -20,9 +20,12 @@ export const signInRequest = async ({ email, password }) => {
       email,
       password,
     });
+    console.log('Sign in API response:', response);
+    console.log('Response data:', response.data);
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw error.response.data;
+    console.error('Sign in API error:', error);
+    console.error('Error response:', error.response?.data);
+    throw error.response?.data || error;
   }
 };

@@ -12,13 +12,25 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    if (user && token) {
-      setAuth({
-        user: JSON.parse(user),
-        token,
-        isLoading: false,
-      });
-    } else {
+
+    try {
+      if (user && token && user !== 'undefined') {
+        setAuth({
+          user: JSON.parse(user),
+          token,
+          isLoading: false,
+        });
+      } else {
+        setAuth({
+          user: null,
+          token: null,
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      console.error('Error parsing auth data from localStorage:', error);
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
       setAuth({
         user: null,
         token: null,
